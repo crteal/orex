@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const config = {
     devtool: 'cheap-source-map',
@@ -15,14 +16,14 @@ const config = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['es2015'],
+                    presets: ['@babel/preset-env'],
                     cacheDirectory: true
                 },
             }
         ]
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({
+        new UglifyJsPlugin({
             sourceMap: true
         }),
     ],
